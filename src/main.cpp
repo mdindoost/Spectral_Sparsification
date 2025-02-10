@@ -1,36 +1,39 @@
 #include <iostream>
 #include "run_gSparse.h"
+#include <vector>
 
-int main()
-{
-    // Define a small directed graph
-    int n = 4;  // number of nodes
-    int m = 4;  // number of edges
+int main() {
+    int n = 20;  // 5-node clique
+    std::vector<int> src, dst;
+    
+    // Generate complete graph edges
+    for(int i = 0; i < n; i++) {
+        for(int j = i+1; j < n; j++) {
+            src.push_back(i);
+            dst.push_back(j);
+        }
+    }
+    
+    int m = src.size();
+    std::cout << "Original edges (" << m << " total):" << std::endl;
+    for(int i = 0; i < m; i++) {
+        std::cout << src[i] << " -> " << dst[i] << std::endl;
+    }
 
-    // Edges: (0->1), (1->2), (2->3), (0->2)
-    int src[] = {0, 1, 2, 0};
-    int dst[] = {1, 2, 3, 2};
-
-    // Array to hold node flags
     int* node_flags = new int[n];
+    int ret = run_gSparse(n, m, src.data(), dst.data(), node_flags);
 
-    // Call our sparsification function
-    int ret = run_gSparse(n, m, src, dst, node_flags);
-
-    // Check for errors
     if (ret != 0) {
-        std::cerr << "Error calling run_gSparse (error code: " << ret << ")" << std::endl;
+        std::cerr << "Error in run_gSparse" << std::endl;
         delete[] node_flags;
         return 1;
     }
 
-    // Print out which nodes are marked as 1 (in the sparsified graph)
+    std::cout << "\nNodes in sparsified graph:" << std::endl;
     for (int i = 0; i < n; i++) {
-        std::cout << "Node " << i << " flag = " << node_flags[i] << std::endl;
+        std::cout << "Node " << i << ": " << (node_flags[i] ? "included" : "excluded") << std::endl;
     }
 
-    // Clean up
     delete[] node_flags;
     return 0;
 }
-
