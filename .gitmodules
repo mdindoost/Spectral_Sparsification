@@ -1,0 +1,3 @@
+[submodule "external/gSparse"]
+	path = external/gSparse
+	url = https://github.com/As-12/gSparse
