@@ -1,3 +1,6 @@
 [submodule "external/gSparse"]
 	path = external/gSparse
 	url = https://github.com/As-12/gSparse
+[submodule "external/eigen"]
+	path = external/eigen
+	url = https://gitlab.com/libeigen/eigen.git

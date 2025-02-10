@@ -1,0 +1,41 @@
+# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+
+# Directories for builds
+build/
+bin/
+
+# CMake related (if using CMake)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile.cmake
+
+# Editor/IDE files
+*.swp
+*.swo
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# If you have generated files that should not be tracked, list them here.
+
